@@ -1,7 +1,8 @@
 # Using LAVA with Docker
 
 This is the repository that stores the configuration for
-[lava.therub.org](https://lava.therub.org/). The goals for this lab are:
+[lava.therub.org](https://lava.therub.org/). The goals for this personal lab
+are:
 - [kernelCI](https://kernelci.org/) participation
 - [lavafed](https://federation.lavasoftware.org/) participation
 - Best practice reference for deploying and managing LAVA
@@ -17,10 +18,37 @@ LAVA server+dispatcher running on the same host, with several physical and
 virtual devices attached for testing. Over time, it may scale to multiple LAVA
 hosts and more boards.
 
+Additional information about LAVA, Docker, and this lab can be found at
+[Running LAVA with Docker
+Compose](https://therub.org/2019/03/01/lava-docker-compose/) [Setting up a
+board farm with LAVA and
+Docker](https://therub.org/2019/03/05/setting-up-a-board-farm-with-lava-and-docker/).
+
 ## Configuration
 
 The configuration is specific to the boards in this lab. However, the approach
-to running LAVA is useful as a reference.
+to running LAVA may be useful as a reference.
+
+The following specific containers are used in this deployment:
+
+`database`: Postgresql container for LAVA server. Database stored in a docker volume.
+
+`squid`: HTTP caching container. Cache stored in a docker volume.
+
+`server`: LAVA server. job-output stored in a docker volume. Configuration files
+mounted in from this repository.
+
+`dispatcher`: LAVA dispatcher. Requires escalated privileges for QEMU jobs as
+well as Docker jobs. Docker volumes mounted in for tftpd and nfsd.
+
+`ser2net`: Serial port to telnet interface. Requires exclusive access to the
+serial devices.
+
+`tftpd-hpa`: TFTPd container. Uses a docker volume which is also mounted into the
+dispatcher.
+
+`nfsd`: NFSd container. Uses a docker volume which is also mounted into the
+dispatcher.
 
 ## Usage
 

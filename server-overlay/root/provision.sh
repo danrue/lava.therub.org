@@ -25,3 +25,8 @@ lava-server manage device-types list | grep -q x15 || \
 lava-server manage devices list | grep -q x15-01 || \
     lava-server manage devices add --device-type x15 --worker dispatcher x15-01
 
+lava-server manage device-types list | grep -q docker || \
+    lava-server manage device-types add docker
+
+lava-server manage devices list | grep -q docker-lavafed-01 || \
+    lava-server manage devices add --device-type docker --worker dispatcher docker-lavafed-01

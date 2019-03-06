@@ -45,7 +45,9 @@ services:
     restart: always
 
   dispatcher:
-    image: lavasoftware/amd64-lava-dispatcher:2019.01
+    #image: lavasoftware/amd64-lava-dispatcher:2019.01
+    build:
+      context: ./dispatcher-docker # For docker install for lavafed
     container_name: lava_dispatcher
     devices:
       - /dev/kvm
@@ -63,6 +65,7 @@ services:
       - nfsd:/var/lib/lava/dispatcher/tmp
       - tftp:/srv/tftp
       - ./dispatcher-overlay/etc/lava-dispatcher:/etc/lava-dispatcher
+      - /var/run/docker.sock:/var/run/docker.sock
     restart: always
 
   ser2net:

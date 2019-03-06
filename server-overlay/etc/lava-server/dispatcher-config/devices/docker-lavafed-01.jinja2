@@ -1,0 +1,6 @@
+{% extends 'docker.jinja2' %}
+
+{% set docker_cpus = '2' %}
+{% set docker_memory = '1024M' %}
+{% set docker_devices = ["/dev/kvm:/dev/kvm"] %}
+{% set docker_volumes = ["/var/lib/lava/dispatcher/tmp:/var/lib/lava/dispatcher/tmp", "/boot:/boot", "/lib/modules:/lib/modules"] %}

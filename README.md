@@ -6,6 +6,7 @@ are:
 - [kernelCI](https://kernelci.org/) participation
 - [lavafed](https://federation.lavasoftware.org/) participation
 - Best practice reference for deploying and managing LAVA
+- Personal enjoyment and learning
 
 ![LAVA board farm with embedded ARM boards mounted in
 rack](documentation/lava-lab.jpg)
@@ -20,7 +21,7 @@ hosts and more boards.
 
 Additional information about LAVA, Docker, and this lab can be found at
 [Running LAVA with Docker
-Compose](https://therub.org/2019/03/01/lava-docker-compose/) [Setting up a
+Compose](https://therub.org/2019/03/01/lava-docker-compose/) and [Setting up a
 board farm with LAVA and
 Docker](https://therub.org/2019/03/05/setting-up-a-board-farm-with-lava-and-docker/).
 

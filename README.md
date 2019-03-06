@@ -1,47 +1,56 @@
 # Using LAVA with Docker
 
-This repository attempts to provide a reference implementation of deploying
-LAVA using its officially distributed docker containers.
+This is the repository that stores the configuration for
+[lava.therub.org](https://lava.therub.org/). The goals for this lab are:
+- [kernelCI](https://kernelci.org/) participation
+- [lavafed](https://federation.lavasoftware.org/) participation
+- Best practice reference for deploying and managing LAVA
 
-## Requirements
+![LAVA board farm with embedded ARM boards mounted in
+rack](documentation/lava-lab.jpg)
 
-Install the following.
-- [Docker](https://docs.docker.com/install/)
-- [docker-compose](https://docs.docker.com/compose/install/)
+## Lab Description
+
+This lab is deployed using [Docker](https://docs.docker.com/install/) and
+[docker-compose](https://docs.docker.com/compose/install/) on a single physical
+LAVA server+dispatcher running on the same host, with several physical and
+virtual devices attached for testing. Over time, it may scale to multiple LAVA
+hosts and more boards.
 
 ## Configuration
 
+The configuration is specific to the boards in this lab. However, the approach
+to running LAVA is useful as a reference.
 
 ## Usage
 
-`make`: Deploy a pgsql container, lava server container, lava dispatcher
-container, and image host container. A user (username admin, password admin)
-will automatically be deployed, as well as a qemu device-type and a qemu-01
-device. Its health check should run automatically.
+`docker-compose up -d`: Bring up the lab
 
-`make clean`: Permanently delete the containers and the pgsql volume.
-
-Once up, go to your http://your-IP (port 80) and log in with admin:admin.
+`docker-compose down`: Bring down the lab
 
 ## Upgrades
 
 1. Stop containers.
 2. Back up pgsql from its docker volume
 
-    sudo tar cvzf lava-server-pgdata-$(date +%Y%m%d).tgz /var/lib/docker/volumes/lava-server-pgdata
+    sudo tar cvzf $HOME/lava-server-pgdata-$(date +%Y%m%d).tgz /var/lib/docker/volumes/lava-server-pgdata
 
-3. Change e.g. `lavasoftware/amd64-lava-server:2018.11` to
-`lavasoftware/amd64-lava-server:2019.01` and
-`lavasoftware/amd64-lava-dispatcher:2018.11` to
-`lavasoftware/amd64-lava-dispatcher:2019.01` in docker-compose.yml.
+3. Change e.g. `lavasoftware/lava-server:2019.01` to
+`lavasoftware/lava-server:2019.03` and
+`lavasoftware/lava-dispatcher:2019.01` to
+`lavasoftware/lava-dispatcher:2019.03` in docker-compose.yml.
 4. Change the FROM line if any containers are being rebuilt, such as
-[./server-docker/Dockerfile](./server-docker/Dockerfile)
+[./dispatcher-docker/Dockerfile](./dispatcher-docker/Dockerfile)
 5. Start containers.
-
 
 ## Useful Commands
 
 Spy on the serial port:
 
-    docker-compose exec dispatcher telnet ser2net 5001
+    docker-compose exec dispatcher telnet ser2net 5001 # beaglebone-black-01
+    docker-compose exec dispatcher telnet ser2net 5002 # x15-01
 
+View logs:
+
+    docker-compose logs -f # all containers
+    docker-compose logs -f server # only the server

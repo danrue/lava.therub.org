@@ -21,12 +21,7 @@ services:
     restart: always
 
   server:
-    #image: lavasoftware/amd64-lava-server:2019.01
-
-    # Use an updated entrypoint; this is necessary to run provision.sh at boot time
-    # See https://git.lavasoftware.org/lava/pkg/docker/merge_requests/10
-    build:
-      context: ./server-docker
+    image: lavasoftware/lava-server:2019.03
 
     container_name: lava_server
     ports:
@@ -37,7 +32,7 @@ services:
       - ./server-overlay/etc/lava-server/instance.conf:/etc/lava-server/instance.conf
       - ./server-overlay/etc/lava-server/dispatcher-config/health-checks:/etc/lava-server/dispatcher-config/health-checks
       - ./server-overlay/etc/lava-server/dispatcher-config/devices:/etc/lava-server/dispatcher-config/devices
-      - ./server-overlay/root/provision.sh:/root/provision.sh
+      - ./server-overlay/root/entrypoint.d/provision.sh:/root/entrypoint.d/provision.sh
       - ./server-overlay/etc/lava-server/dispatcher-config/device-types/base.jinja2:/etc/lava-server/dispatcher-config/device-types/base.jinja2
       - ./server-overlay/etc/lava-server/dispatcher.d/:/etc/lava-server/dispatcher.d/
     depends_on:
@@ -45,7 +40,7 @@ services:
     restart: always
 
   dispatcher:
-    #image: lavasoftware/amd64-lava-dispatcher:2019.01
+    #image: lavasoftware/lava-dispatcher:2019.03
     build:
       context: ./dispatcher-docker # For docker install for lavafed
     container_name: lava_dispatcher

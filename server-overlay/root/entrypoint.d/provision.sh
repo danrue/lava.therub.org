@@ -19,11 +19,11 @@ lava-server manage device-types list | grep -q beaglebone-black || \
 lava-server manage devices list | grep -q beaglebone-black-01 || \
     lava-server manage devices add --device-type beaglebone-black --worker dispatcher beaglebone-black-01
 
-lava-server manage device-types list | grep -q x15 || \
-    lava-server manage device-types add x15
+lava-server manage device-types list | grep -q am57xx-beagle-x15 || \
+    lava-server manage device-types add am57xx-beagle-x15
 
-lava-server manage devices list | grep -q x15-01 || \
-    lava-server manage devices add --device-type x15 --worker dispatcher x15-01
+lava-server manage devices list | grep -q am57xx-beagle-x15-01 || \
+    lava-server manage devices add --device-type am57xx-beagle-x15 --worker dispatcher am57xx-beagle-x15-01
 
 lava-server manage device-types list | grep -q docker || \
     lava-server manage device-types add docker

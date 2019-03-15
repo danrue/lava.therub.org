@@ -33,7 +33,7 @@ services:
       - ./server-overlay/etc/lava-server/dispatcher-config/health-checks:/etc/lava-server/dispatcher-config/health-checks
       - ./server-overlay/etc/lava-server/dispatcher-config/devices:/etc/lava-server/dispatcher-config/devices
       - ./server-overlay/root/entrypoint.d/provision.sh:/root/entrypoint.d/provision.sh
-      - ./server-overlay/etc/lava-server/dispatcher-config/device-types/base.jinja2:/etc/lava-server/dispatcher-config/device-types/base.jinja2
+      - ./server-overlay/etc/lava-server/dispatcher-config/device-types/am57xx-beagle-x15.jinja2:/etc/lava-server/dispatcher-config/device-types/am57xx-beagle-x15.jinja2
       - ./server-overlay/etc/lava-server/dispatcher.d/:/etc/lava-server/dispatcher.d/
     depends_on:
       - database
@@ -90,6 +90,13 @@ services:
     container_name: lava_nfsd
     ports:
       - 2049:2049 #nfsv4
+      - 2049:2049/udp #nfsv3
+      - 111:111 #nfsv3
+      - 111:111/udp #nfsv3
+      - 32765:32765 #nfsv3
+      - 32765:32765/udp #nfsv3
+      - 32767:32767 #nfsv3
+      - 32767:32767/udp #nfsv3
     volumes:
       - nfsd:/var/lib/lava/dispatcher/tmp
       - ./nfsd/exports:/etc/exports

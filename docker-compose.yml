@@ -59,7 +59,6 @@ services:
       - /lib/modules:/lib/modules:ro
       - nfsd:/var/lib/lava/dispatcher/tmp
       - tftp:/srv/tftp
-      - ./dispatcher-overlay/etc/lava-dispatcher:/etc/lava-dispatcher
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
 

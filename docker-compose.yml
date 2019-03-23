@@ -1,5 +1,6 @@
 version: '3.4'
 services:
+
   database:
     image: postgres:9.6
     container_name: lava_postgres
@@ -96,11 +97,14 @@ services:
       - 32765:32765/udp #nfsv3
       - 32767:32767 #nfsv3
       - 32767:32767/udp #nfsv3
+    environment:
+      NFS_EXPORT_0: '/var/lib/lava/dispatcher/tmp *(rw,no_root_squash,no_all_squash,async,no_subtree_check)'
     volumes:
       - nfsd:/var/lib/lava/dispatcher/tmp
-      - ./nfsd/exports:/etc/exports
+      - /lib/modules:/lib/modules:ro # Allow container to modprobe nfsd
     cap_add:
       - SYS_ADMIN
+      - SYS_MODULE # Allow container to modprobe nfsd
     restart: always
 
 volumes:

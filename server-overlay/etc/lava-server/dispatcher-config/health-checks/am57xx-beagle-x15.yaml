@@ -14,6 +14,7 @@ priority: medium
 visibility: public
 actions:
 - deploy:
+    namespace: ramdisktest
     timeout:
       minutes: 2
     to: tftp
@@ -33,12 +34,48 @@ actions:
       url: http://people.linaro.org/~dan.rue/health_checks/x15/am57xx-beagle-x15.dtb
       sha256sum: bab7f10823072aafd3c6e2d041be246d3b7b77dd95b53d2c2ffcf32fe86b3928
     os: oe
-
-
 - boot:
+    namespace: ramdisktest
     timeout:
       minutes: 5
     method: u-boot
     commands: ramdisk
     prompts:
       - '/ #'
+
+- deploy:
+   namespace: nfstest
+   timeout:
+     minutes: 2
+   to: tftp
+   kernel:
+      url: http://people.linaro.org/~dan.rue/health_checks/x15/zImage
+      type: zimage
+      sha256sum: 96adbe884edbb807fe1b3dffe50071027623553da0ff0ceb5ea7e7ac67649328
+   modules:
+      url: http://people.linaro.org/~dan.rue/health_checks/x15/modules.tar.xz
+      compression: xz
+      sha256sum: a6a9a3de0a176fc6b52c32b5573a9a9b4e2b5cd058bebbe0b940f75abe72164a
+   dtb:
+      url: http://people.linaro.org/~dan.rue/health_checks/x15/am57xx-beagle-x15.dtb
+      sha256sum: bab7f10823072aafd3c6e2d041be246d3b7b77dd95b53d2c2ffcf32fe86b3928
+   nfsrootfs:
+       url: http://images.collabora.co.uk/singularity/health-check/rootfs/stretch/stretch-armhf.tar.gz
+   os: debian
+- boot:
+   namespace: nfstest
+   method: u-boot
+   commands: nfs
+   type: image
+   failure_retry: 3
+   prompts:
+     - 'user@'
+     - '/ #'
+   auto_login:
+      login_prompt: 'login:'
+      username: user
+      password_prompt: 'Password:'
+      password: user
+      login_commands:
+        - uname -a
+

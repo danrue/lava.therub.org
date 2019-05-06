@@ -59,18 +59,30 @@ dispatcher.
 
 ## Upgrades
 
-1. Stop containers.
+1. `docker-compose down`
 2. Back up pgsql from its docker volume
 
+```
     sudo tar cvzf $HOME/lava-server-pgdata-$(date +%Y%m%d).tgz /var/lib/docker/volumes/lava-server-pgdata
+```
 
-3. Change e.g. `lavasoftware/lava-server:2019.01` to
-`lavasoftware/lava-server:2019.03` and
-`lavasoftware/lava-dispatcher:2019.01` to
-`lavasoftware/lava-dispatcher:2019.03` in docker-compose.yml.
+3. Change e.g. `lavasoftware/lava-server:2019.03` to
+`lavasoftware/lava-server:2019.04` and
+`lavasoftware/lava-dispatcher:2019.03` to
+`lavasoftware/lava-dispatcher:2019.04` in docker-compose.yml.
 4. Change the FROM line if any containers are being rebuilt, such as
 [./dispatcher-docker/Dockerfile](./dispatcher-docker/Dockerfile)
-5. Start containers.
+5. `docker-compose up -d`
+
+### 2019.03 to 2019.04
+
+This upgrade changed the uid and gid of the lava user in the container to
+200:200. After upgrading, run the following command to chown
+/var/lib/lava-server accordingly:
+
+```
+$ docker-compose exec server chown -R lavaserver:lavaserver /var/lib/lava-server/
+```
 
 ## Useful Commands
 

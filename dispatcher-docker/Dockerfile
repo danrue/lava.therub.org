@@ -1,4 +1,4 @@
-FROM lavasoftware/lava-dispatcher:2019.03
+FROM lavasoftware/lava-dispatcher:2019.04
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -y install \

@@ -16,16 +16,16 @@ actions:
        minutes: 2
      to: tftp
      kernel:
-         url: http://images.collabora.co.uk/singularity/health-check/4.10/armhf/zImage
+         url: http://people.linaro.org/~dan.rue/health_checks/beaglebone-black/zImage
          type: image
      ramdisk:
-         url: http://images.collabora.co.uk/singularity/health-check/rootfs/buildroot/armhf/rootfs.cpio.gz
+         url: http://people.linaro.org/~dan.rue/health_checks/beaglebone-black/rootfs.cpio.gz
          compression: gz
      modules:
-         url: http://images.collabora.co.uk/singularity/health-check/4.10/armhf/modules.tar.xz
+         url: http://people.linaro.org/~dan.rue/health_checks/beaglebone-black/modules.tar.xz
          compression: xz
      dtb:
-         url: http://images.collabora.co.uk/singularity/health-check/4.10/armhf/dtb/am335x-boneblack.dtb
+         url: http://people.linaro.org/~dan.rue/health_checks/beaglebone-black/am335x-boneblack.dtb
      os: oe
   - boot:
      namespace: ramdisktest
@@ -43,15 +43,15 @@ actions:
        minutes: 2
      to: tftp
      kernel:
-         url: http://images.collabora.co.uk/singularity/health-check/4.10/armhf/zImage
+         url: http://people.linaro.org/~dan.rue/health_checks/beaglebone-black/zImage
          type: image
      modules:
-         url: http://images.collabora.co.uk/singularity/health-check/4.10/armhf/modules.tar.xz
+         url: http://people.linaro.org/~dan.rue/health_checks/beaglebone-black/modules.tar.xz
          compression: xz
      dtb:
-         url: http://images.collabora.co.uk/singularity/health-check/4.10/armhf/dtb/am335x-boneblack.dtb
+         url: http://people.linaro.org/~dan.rue/health_checks/beaglebone-black/am335x-boneblack.dtb
      nfsrootfs:
-         url: http://images.collabora.co.uk/singularity/health-check/rootfs/stretch/stretch-armhf.tar.gz
+         url: http://people.linaro.org/~dan.rue/health_checks/beaglebone-black/stretch-armhf.tar.gz
      os: debian
   - boot:
      namespace: nfstest

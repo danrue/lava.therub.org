@@ -60,7 +60,7 @@ actions:
       url: http://people.linaro.org/~dan.rue/health_checks/x15/am57xx-beagle-x15.dtb
       sha256sum: bab7f10823072aafd3c6e2d041be246d3b7b77dd95b53d2c2ffcf32fe86b3928
    nfsrootfs:
-       url: http://images.collabora.co.uk/singularity/health-check/rootfs/stretch/stretch-armhf.tar.gz
+       url: http://people.linaro.org/~dan.rue/health_checks/x15/stretch-armhf.tar.gz
    os: debian
 - boot:
    namespace: nfstest

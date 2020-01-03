@@ -74,6 +74,14 @@ dispatcher.
 [./dispatcher-docker/Dockerfile](./dispatcher-docker/Dockerfile)
 5. `docker-compose up -d`
 
+### 2019.05 to 2019.10
+
+Needed to add a [chown
+script](./server-overlay/root/entrypoint.d/chown-files.sh:/root/entrypoint.d/chown-files.sh)
+to handle a file ownership check that was added to the docker containers.
+
+Moved health-check binaries to a github lfs repo.
+
 ### 2019.03 to 2019.04
 
 This upgrade changed the uid and gid of the lava user in the container to

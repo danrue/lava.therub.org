@@ -22,7 +22,7 @@ services:
     restart: always
 
   server:
-    image: lavasoftware/lava-server:2019.05
+    image: lavasoftware/lava-server:2019.10
 
     container_name: lava_server
     ports:
@@ -34,16 +34,19 @@ services:
       - ./server-overlay/etc/lava-server/env.yaml:/etc/lava-server/env.yaml
       - ./server-overlay/etc/lava-server/dispatcher-config/health-checks:/etc/lava-server/dispatcher-config/health-checks
       - ./server-overlay/etc/lava-server/dispatcher-config/devices:/etc/lava-server/dispatcher-config/devices
-      - ./server-overlay/root/entrypoint.d/provision.sh:/root/entrypoint.d/provision.sh
       - ./server-overlay/etc/lava-server/dispatcher-config/device-types/am57xx-beagle-x15.jinja2:/etc/lava-server/dispatcher-config/device-types/am57xx-beagle-x15.jinja2
       - ./server-overlay/etc/lava-server/dispatcher-config/device-types/beaglebone-black.jinja2:/etc/lava-server/dispatcher-config/device-types/beaglebone-black.jinja2
       - ./server-overlay/etc/lava-server/dispatcher.d/:/etc/lava-server/dispatcher.d/
+      # provisioning script to add users and boards
+      - ./server-overlay/root/entrypoint.d/provision.sh:/root/entrypoint.d/provision.sh
+      # chown script to handle lava-server file permissions
+      - ./server-overlay/root/entrypoint.d/chown-files.sh:/root/entrypoint.d/chown-files.sh
     depends_on:
       - database
     restart: always
 
   dispatcher:
-    image: lavasoftware/lava-dispatcher:2019.05
+    image: lavasoftware/lava-dispatcher:2019.10
     container_name: lava_dispatcher
     devices:
       - /dev/kvm

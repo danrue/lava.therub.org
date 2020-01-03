@@ -16,16 +16,16 @@ actions:
        minutes: 2
      to: tftp
      kernel:
-         url: http://people.linaro.org/~dan.rue/health_checks/beaglebone-black/zImage
+         url: https://github.com/danrue/lava-health-check-files/blob/854575d695fc7dd5261dd35e45e20f8b5e2ec5b1/health_checks/beaglebone-black/zImage
          type: image
      ramdisk:
-         url: http://people.linaro.org/~dan.rue/health_checks/beaglebone-black/rootfs.cpio.gz
+         url: https://github.com/danrue/lava-health-check-files/blob/854575d695fc7dd5261dd35e45e20f8b5e2ec5b1/health_checks/beaglebone-black/rootfs.cpio.gz
          compression: gz
      modules:
-         url: http://people.linaro.org/~dan.rue/health_checks/beaglebone-black/modules.tar.xz
+         url: https://github.com/danrue/lava-health-check-files/blob/854575d695fc7dd5261dd35e45e20f8b5e2ec5b1/health_checks/beaglebone-black/modules.tar.xz
          compression: xz
      dtb:
-         url: http://people.linaro.org/~dan.rue/health_checks/beaglebone-black/am335x-boneblack.dtb
+         url: https://github.com/danrue/lava-health-check-files/blob/854575d695fc7dd5261dd35e45e20f8b5e2ec5b1/health_checks/beaglebone-black/am335x-boneblack.dtb
      os: oe
   - boot:
      namespace: ramdisktest
@@ -43,15 +43,15 @@ actions:
        minutes: 2
      to: tftp
      kernel:
-         url: http://people.linaro.org/~dan.rue/health_checks/beaglebone-black/zImage
+         url: https://github.com/danrue/lava-health-check-files/blob/854575d695fc7dd5261dd35e45e20f8b5e2ec5b1/health_checks/beaglebone-black/zImage
          type: image
      modules:
-         url: http://people.linaro.org/~dan.rue/health_checks/beaglebone-black/modules.tar.xz
+         url: https://github.com/danrue/lava-health-check-files/blob/854575d695fc7dd5261dd35e45e20f8b5e2ec5b1/health_checks/beaglebone-black/modules.tar.xz
          compression: xz
      dtb:
-         url: http://people.linaro.org/~dan.rue/health_checks/beaglebone-black/am335x-boneblack.dtb
+         url: https://github.com/danrue/lava-health-check-files/blob/854575d695fc7dd5261dd35e45e20f8b5e2ec5b1/health_checks/beaglebone-black/am335x-boneblack.dtb
      nfsrootfs:
-         url: http://people.linaro.org/~dan.rue/health_checks/beaglebone-black/stretch-armhf.tar.gz
+         url: https://github.com/danrue/lava-health-check-files/blob/854575d695fc7dd5261dd35e45e20f8b5e2ec5b1/health_checks/beaglebone-black/stretch-armhf.tar.gz
      os: debian
   - boot:
      namespace: nfstest

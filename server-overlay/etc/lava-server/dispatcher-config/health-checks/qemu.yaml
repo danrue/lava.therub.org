@@ -28,11 +28,11 @@ actions:
     images:
       kernel:
         image_arg: '-kernel {kernel} -append "console=ttyAMA0,115200 root=/dev/ram0 debug verbose"'
-        url: https://github.com/danrue/lava-health-check-files/raw/854575d695fc7dd5261dd35e45e20f8b5e2ec5b1/health_checks/qemu/zImage
+        url: https://github.com/danrue/lava-health-check-files/raw/e1e76b687bd0f0c643d9538186720e88749f3e26/health_checks/qemu/zImage
         sha256sum: ac04608b6fb548eb6eb97509e376aa4f7c7d74a22a4c14c4f1e6b46b2dcbfbd7
       ramdisk:
         image_arg: '-initrd {ramdisk}'
-        url: https://github.com/danrue/lava-health-check-files/raw/854575d695fc7dd5261dd35e45e20f8b5e2ec5b1/health_checks/qemu/rootfs.cpio.gz
+        url: https://github.com/danrue/lava-health-check-files/raw/e1e76b687bd0f0c643d9538186720e88749f3e26/health_checks/qemu/rootfs.cpio.gz
         sha256sum: 0a63d3a669cff57dca9eb5d45f476485ee46b9443ca2078feb860b7e90aeeb38
 
 - boot:
